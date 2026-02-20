@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS body_weight_logs;
+DROP TABLE IF EXISTS meal_items;
+DROP TABLE IF EXISTS meals;
+DROP TABLE IF EXISTS recipe_ingredients;
+DROP TABLE IF EXISTS recipes;
+DROP TABLE IF EXISTS foods;
+DROP TYPE IF EXISTS meal_type_enum;

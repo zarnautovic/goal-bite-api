@@ -1,0 +1,13 @@
+meta {
+  name: Get Daily Totals
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/api/v1/daily-totals?date=2026-02-17
+}
+
+headers {
+  Authorization: Bearer {{jwt}}
+}

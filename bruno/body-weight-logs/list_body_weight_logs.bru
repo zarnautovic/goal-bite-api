@@ -1,0 +1,22 @@
+meta {
+  name: List Body Weight Logs
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/v1/body-weight-logs?from=2026-01-01&to=2026-02-18&limit=20&offset=0
+  body: none
+  auth: none
+}
+
+params:query {
+  from: 2026-01-01
+  to: 2026-02-18
+  limit: 20
+  offset: 0
+}
+
+headers {
+  Authorization: Bearer {{jwt}}
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Create Food
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/v1/foods
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: Bearer {{jwt}}
+}
+
+body:json {
+  {
+    "name": "Rice",
+    "barcode": "{{foodBarcode}}",
+    "kcal_per_100g": 130,
+    "protein_per_100g": 2.7,
+    "carbs_per_100g": 28,
+    "fat_per_100g": 0.3
+  }
+}

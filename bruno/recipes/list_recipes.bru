@@ -1,0 +1,13 @@
+meta {
+  name: List Recipes
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/v1/recipes?limit=20&offset=0
+}
+
+headers {
+  Authorization: Bearer {{jwt}}
+}

@@ -1,0 +1,22 @@
+meta {
+  name: Add Food Item To Meal
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/v1/meals/{{mealId}}/items
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: Bearer {{jwt}}
+}
+
+body:json {
+  {
+    "food_id": {{foodId}},
+    "weight_g": 100
+  }
+}

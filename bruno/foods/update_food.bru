@@ -1,0 +1,21 @@
+meta {
+  name: Update Food
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{baseUrl}}/api/v1/foods/{{foodId}}
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: Bearer {{jwt}}
+}
+
+body:json {
+  {
+    "name": "White Rice"
+  }
+}

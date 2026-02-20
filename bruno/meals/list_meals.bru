@@ -1,0 +1,13 @@
+meta {
+  name: List Meals By Date
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/v1/meals?date=2026-02-17&limit=20&offset=0
+}
+
+headers {
+  Authorization: Bearer {{jwt}}
+}

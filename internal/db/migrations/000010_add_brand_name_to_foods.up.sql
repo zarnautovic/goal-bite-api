@@ -1,0 +1,2 @@
+ALTER TABLE foods
+ADD COLUMN IF NOT EXISTS brand_name TEXT;

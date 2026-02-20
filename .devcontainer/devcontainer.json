@@ -1,0 +1,25 @@
+{
+  "name": "nutrition-go-postgres",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "forwardPorts": [5432],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "golang.go",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y postgresql-client && go mod tidy",
+  "remoteEnv": {
+    "DATABASE_URL": "postgres://postgres:postgres@db:5432/nutrition?sslmode=disable",
+    "PGHOST": "db",
+    "PGPORT": "5432",
+    "PGUSER": "postgres",
+    "PGPASSWORD": "postgres",
+    "PGDATABASE": "nutrition"
+  }
+}

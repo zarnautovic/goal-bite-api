@@ -1,0 +1,26 @@
+meta {
+  name: Upsert User Goals
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{baseUrl}}/api/v1/user-goals
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: Bearer {{jwt}}
+}
+
+body:json {
+  {
+    "target_kcal": 2200,
+    "target_protein_g": 150,
+    "target_carbs_g": 220,
+    "target_fat_g": 70,
+    "weight_goal_kg": 80,
+    "activity_level": "moderate"
+  }
+}

@@ -1,0 +1,20 @@
+meta {
+  name: Get Energy Progress
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/v1/progress/energy?from=2026-01-01&to=2026-02-18
+  body: none
+  auth: none
+}
+
+params:query {
+  from: 2026-01-01
+  to: 2026-02-18
+}
+
+headers {
+  Authorization: Bearer {{jwt}}
+}

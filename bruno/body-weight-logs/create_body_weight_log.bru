@@ -1,0 +1,23 @@
+meta {
+  name: Create Body Weight Log
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/v1/body-weight-logs
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: Bearer {{jwt}}
+}
+
+body:json {
+  {
+    "weight_kg": 154.0,
+    "logged_at": "2026-02-18T08:00:00Z"
+  }
+}

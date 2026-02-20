@@ -1,0 +1,31 @@
+meta {
+  name: Update Me
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{baseUrl}}/api/v1/users/me
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: Bearer {{jwt}}
+}
+
+body:json {
+  {
+    "name": "Demo Updated",
+    "sex": "male",
+    "birth_date": "1994-05-18",
+    "height_cm": 178,
+    "activity_level": "moderate"
+  }
+}
+
+###
+# Clear optional fields by sending null, for example:
+# {
+#   "activity_level": null
+# }

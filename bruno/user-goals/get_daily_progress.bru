@@ -1,0 +1,13 @@
+meta {
+  name: Get Daily Progress
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/v1/progress/daily?date=2026-02-17
+}
+
+headers {
+  Authorization: Bearer {{jwt}}
+}

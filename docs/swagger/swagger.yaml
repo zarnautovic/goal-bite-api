@@ -1,0 +1,1834 @@
+basePath: /api/v1
+definitions:
+  dto.AddMealItemRequest:
+    properties:
+      food_id:
+        description: Food source ID (mutually exclusive with recipe_id).
+        example: 1
+        type: integer
+      recipe_id:
+        description: Recipe source ID (mutually exclusive with food_id).
+        example: 1
+        type: integer
+      weight_g:
+        description: Item consumed weight in grams.
+        example: 150
+        type: number
+    type: object
+  dto.CreateBodyWeightLogRequest:
+    properties:
+      logged_at:
+        description: Measurement timestamp in RFC3339 UTC.
+        example: "2026-02-17T08:00:00Z"
+        type: string
+      weight_kg:
+        description: Body weight in kilograms.
+        example: 85.2
+        type: number
+    type: object
+  dto.CreateFoodRequest:
+    properties:
+      barcode:
+        description: Optional product barcode (EAN/UPC digits).
+        example: "5901234123457"
+        type: string
+      carbs_per_100g:
+        description: Carbohydrate grams per 100g.
+        example: 28
+        type: number
+      fat_per_100g:
+        description: Fat grams per 100g.
+        example: 0.3
+        type: number
+      kcal_per_100g:
+        description: Energy in kcal per 100g.
+        example: 130
+        type: number
+      name:
+        description: Human-readable food name.
+        example: Rice
+        type: string
+      protein_per_100g:
+        description: Protein grams per 100g.
+        example: 2.7
+        type: number
+    type: object
+  dto.CreateMealRequest:
+    properties:
+      eaten_at:
+        description: Meal time in RFC3339 UTC.
+        example: "2026-02-17T12:00:00Z"
+        type: string
+      items:
+        description: Optional items created atomically with meal.
+        items:
+          $ref: '#/definitions/dto.AddMealItemRequest'
+        type: array
+      meal_type:
+        allOf:
+        - $ref: '#/definitions/meal.MealType'
+        description: Meal type enum.
+        example: lunch
+    type: object
+  dto.CreateRecipeRequest:
+    properties:
+      ingredients:
+        description: Ingredient list used for nutrition calculation.
+        items:
+          $ref: '#/definitions/dto.RecipeIngredientRequest'
+        type: array
+      name:
+        description: Human-readable recipe name.
+        example: Rice Bowl
+        type: string
+      yield_weight_g:
+        description: Final cooked yield weight in grams.
+        example: 200
+        type: number
+    type: object
+  dto.LoginRequest:
+    properties:
+      email:
+        example: john@gmail.com
+        type: string
+      password:
+        example: Pass1234!
+        type: string
+    type: object
+  dto.RecipeIngredientRequest:
+    properties:
+      food_id:
+        description: Existing food ID used as ingredient source.
+        example: 1
+        type: integer
+      position:
+        description: Optional ordering position.
+        example: 1
+        type: integer
+      raw_weight_g:
+        description: Raw ingredient weight in grams.
+        example: 200
+        type: number
+    type: object
+  dto.RefreshTokenRequest:
+    properties:
+      refresh_token:
+        example: 9f5v...
+        type: string
+    type: object
+  dto.RegisterRequest:
+    properties:
+      activity_level:
+        example: moderate
+        type: string
+      birth_date:
+        example: "1994-05-18"
+        type: string
+      email:
+        example: john@gmail.com
+        type: string
+      height_cm:
+        example: 178
+        type: number
+      name:
+        example: John Doe
+        type: string
+      password:
+        example: Pass1234!
+        type: string
+      sex:
+        example: male
+        type: string
+    type: object
+  dto.UpdateFoodRequest:
+    properties:
+      barcode:
+        description: Optional product barcode (EAN/UPC digits).
+        example: "5901234123457"
+        type: string
+      carbs_per_100g:
+        description: Optional carbohydrate grams per 100g.
+        example: 28
+        type: number
+      fat_per_100g:
+        description: Optional fat grams per 100g.
+        example: 0.3
+        type: number
+      kcal_per_100g:
+        description: Optional energy in kcal per 100g.
+        example: 130
+        type: number
+      name:
+        description: Optional food name.
+        example: Cooked Rice
+        type: string
+      protein_per_100g:
+        description: Optional protein grams per 100g.
+        example: 2.7
+        type: number
+    type: object
+  dto.UpdateMeRequest:
+    properties:
+      activity_level:
+        example: moderate
+        type: string
+      birth_date:
+        example: "1994-05-18"
+        type: string
+      height_cm:
+        example: 178
+        type: number
+      name:
+        example: John Doe
+        type: string
+      sex:
+        example: male
+        type: string
+    type: object
+  dto.UpdateMealItemRequest:
+    properties:
+      food_id:
+        description: Optional food source ID (mutually exclusive with recipe_id).
+        example: 1
+        type: integer
+      recipe_id:
+        description: Optional recipe source ID (mutually exclusive with food_id).
+        example: 1
+        type: integer
+      weight_g:
+        description: Optional consumed weight in grams.
+        example: 180
+        type: number
+    type: object
+  dto.UpdateMealRequest:
+    properties:
+      eaten_at:
+        description: Optional meal time in RFC3339 UTC.
+        example: "2026-02-17T19:00:00Z"
+        type: string
+      meal_type:
+        allOf:
+        - $ref: '#/definitions/meal.MealType'
+        description: Optional meal type enum.
+        example: dinner
+    type: object
+  dto.UpdateRecipeRequest:
+    properties:
+      ingredients:
+        description: Optional full replacement of ingredient list.
+        items:
+          $ref: '#/definitions/dto.RecipeIngredientRequest'
+        type: array
+      name:
+        description: Optional recipe name.
+        example: Updated Rice Bowl
+        type: string
+      yield_weight_g:
+        description: Optional final cooked yield weight in grams.
+        example: 210
+        type: number
+    type: object
+  dto.UpsertUserGoalRequest:
+    properties:
+      activity_level:
+        description: 'Optional activity level: sedentary|light|moderate|active|very_active.'
+        example: moderate
+        type: string
+      target_carbs_g:
+        description: Daily carbs target in grams.
+        example: 220
+        type: number
+      target_fat_g:
+        description: Daily fat target in grams.
+        example: 70
+        type: number
+      target_kcal:
+        description: Daily kcal target.
+        example: 2200
+        type: number
+      target_protein_g:
+        description: Daily protein target in grams.
+        example: 150
+        type: number
+      weight_goal_kg:
+        description: Optional body weight goal in kilograms.
+        example: 80
+        type: number
+    type: object
+  handlers.APIError:
+    properties:
+      code:
+        description: Stable machine-readable error code.
+        example: invalid_food_payload
+        type: string
+      message:
+        description: Human-readable error message.
+        example: invalid food payload
+        type: string
+      request_id:
+        description: Request ID for log correlation.
+        example: f328f2f67798/SrQv8xTxwA-000001
+        type: string
+    type: object
+  handlers.BodyWeightLogResponse:
+    properties:
+      created_at:
+        description: Creation timestamp in RFC3339 UTC.
+        example: "2026-02-17T08:00:00Z"
+        type: string
+      id:
+        description: Body weight log ID.
+        example: 1
+        type: integer
+      logged_at:
+        description: Measurement timestamp in RFC3339 UTC.
+        example: "2026-02-17T08:00:00Z"
+        type: string
+      updated_at:
+        description: Last update timestamp in RFC3339 UTC.
+        example: "2026-02-17T08:00:00Z"
+        type: string
+      user_id:
+        description: Owner user ID.
+        example: 1
+        type: integer
+      weight_kg:
+        description: Body weight in kilograms.
+        example: 85.2
+        type: number
+    type: object
+  handlers.DailyProgressResponse:
+    properties:
+      date:
+        description: Target date in YYYY-MM-DD.
+        example: "2026-02-17"
+        type: string
+      remaining_carbs_g:
+        description: Remaining carbs grams (target - total).
+        example: 20
+        type: number
+      remaining_fat_g:
+        description: Remaining fat grams (target - total).
+        example: 10
+        type: number
+      remaining_kcal:
+        description: Remaining kcal (target - total).
+        example: 350
+        type: number
+      remaining_protein_g:
+        description: Remaining protein grams (target - total).
+        example: 30
+        type: number
+      target_carbs_g:
+        description: Target carbohydrate grams for the day.
+        example: 220
+        type: number
+      target_fat_g:
+        description: Target fat grams for the day.
+        example: 70
+        type: number
+      target_kcal:
+        description: Target kcal for the day.
+        example: 2200
+        type: number
+      target_protein_g:
+        description: Target protein grams for the day.
+        example: 150
+        type: number
+      total_carbs_g:
+        description: Aggregated carbohydrate grams for the day.
+        example: 200
+        type: number
+      total_fat_g:
+        description: Aggregated fat grams for the day.
+        example: 60
+        type: number
+      total_kcal:
+        description: Aggregated kcal for the day.
+        example: 1850
+        type: number
+      total_protein_g:
+        description: Aggregated protein grams for the day.
+        example: 120
+        type: number
+    type: object
+  handlers.DailyTotalsResponse:
+    properties:
+      date:
+        description: Target date in YYYY-MM-DD.
+        example: "2026-02-17"
+        type: string
+      total_carbs_g:
+        description: Aggregated carbohydrate grams for the day.
+        example: 220
+        type: number
+      total_fat_g:
+        description: Aggregated fat grams for the day.
+        example: 70
+        type: number
+      total_kcal:
+        description: Aggregated kcal for the day.
+        example: 2100
+        type: number
+      total_protein_g:
+        description: Aggregated protein grams for the day.
+        example: 140
+        type: number
+    type: object
+  handlers.EnergyProgressResponse:
+    properties:
+      avg_intake_kcal:
+        example: 2150
+        type: number
+      data_quality_score:
+        example: 0.78
+        type: number
+      formula_tdee_kcal:
+        example: 2500
+        type: number
+      from:
+        example: "2026-01-22"
+        type: string
+      observed_tdee_kcal:
+        example: 2425
+        type: number
+      recommended_tdee_kcal:
+        example: 2460
+        type: number
+      to:
+        example: "2026-02-18"
+        type: string
+      weight_trend_kg_per_week:
+        example: -0.25
+        type: number
+    type: object
+  handlers.ErrorEnvelope:
+    properties:
+      error:
+        $ref: '#/definitions/handlers.APIError'
+    type: object
+  handlers.FoodResponse:
+    properties:
+      barcode:
+        description: Optional product barcode.
+        example: "5901234123457"
+        type: string
+      carbs_per_100g:
+        description: Carbohydrate grams per 100g.
+        example: 28
+        type: number
+      created_at:
+        description: Creation timestamp in RFC3339 UTC.
+        example: "2026-02-17T12:00:00Z"
+        type: string
+      fat_per_100g:
+        description: Fat grams per 100g.
+        example: 0.3
+        type: number
+      id:
+        description: Food ID.
+        example: 1
+        type: integer
+      kcal_per_100g:
+        description: Energy in kcal per 100g.
+        example: 130
+        type: number
+      name:
+        description: Food name.
+        example: Rice
+        type: string
+      protein_per_100g:
+        description: Protein grams per 100g.
+        example: 2.7
+        type: number
+      updated_at:
+        description: Last update timestamp in RFC3339 UTC.
+        example: "2026-02-17T12:00:00Z"
+        type: string
+    type: object
+  handlers.HealthResponse:
+    properties:
+      message:
+        description: Human-readable health message.
+        example: nutrition api is running
+        type: string
+      status:
+        description: Service status.
+        example: ok
+        type: string
+    type: object
+  handlers.MealItemResponse:
+    properties:
+      carbs_per_100g:
+        description: Carbohydrate snapshot in g per 100g at log time.
+        example: 28
+        type: number
+      created_at:
+        description: Creation timestamp in RFC3339 UTC.
+        example: "2026-02-17T12:00:00Z"
+        type: string
+      fat_per_100g:
+        description: Fat snapshot in g per 100g at log time.
+        example: 0.3
+        type: number
+      food_id:
+        description: Optional food source ID.
+        example: 1
+        type: integer
+      id:
+        description: Meal item ID.
+        example: 1
+        type: integer
+      kcal_per_100g:
+        description: Energy snapshot in kcal per 100g at log time.
+        example: 130
+        type: number
+      meal_id:
+        description: Parent meal ID.
+        example: 1
+        type: integer
+      protein_per_100g:
+        description: Protein snapshot in g per 100g at log time.
+        example: 2.7
+        type: number
+      recipe_id:
+        description: Optional recipe source ID.
+        example: 1
+        type: integer
+      updated_at:
+        description: Last update timestamp in RFC3339 UTC.
+        example: "2026-02-17T12:00:00Z"
+        type: string
+      weight_g:
+        description: Consumed weight in grams.
+        example: 150
+        type: number
+    type: object
+  handlers.MealResponse:
+    properties:
+      created_at:
+        description: Creation timestamp in RFC3339 UTC.
+        example: "2026-02-17T12:00:00Z"
+        type: string
+      eaten_at:
+        description: Meal timestamp in RFC3339 UTC.
+        example: "2026-02-17T12:00:00Z"
+        type: string
+      id:
+        description: Meal ID.
+        example: 1
+        type: integer
+      items:
+        items:
+          $ref: '#/definitions/handlers.MealItemResponse'
+        type: array
+      meal_type:
+        description: Meal type.
+        example: lunch
+        type: string
+      total_carbs_g:
+        description: Aggregated carbohydrate grams for this meal.
+        example: 75
+        type: number
+      total_fat_g:
+        description: Aggregated fat grams for this meal.
+        example: 2.1
+        type: number
+      total_kcal:
+        description: Aggregated kcal for this meal.
+        example: 350
+        type: number
+      total_protein_g:
+        description: Aggregated protein grams for this meal.
+        example: 10.5
+        type: number
+      updated_at:
+        description: Last update timestamp in RFC3339 UTC.
+        example: "2026-02-17T12:00:00Z"
+        type: string
+      user_id:
+        description: Owner user ID.
+        example: 1
+        type: integer
+    type: object
+  handlers.RecipeIngredientResponse:
+    properties:
+      created_at:
+        description: Creation timestamp in RFC3339 UTC.
+        example: "2026-02-17T12:00:00Z"
+        type: string
+      food_id:
+        description: Referenced food ID.
+        example: 1
+        type: integer
+      id:
+        description: Ingredient row ID.
+        example: 1
+        type: integer
+      position:
+        description: Optional ordering position.
+        example: 1
+        type: integer
+      raw_weight_g:
+        description: Raw ingredient weight in grams.
+        example: 200
+        type: number
+      recipe_id:
+        description: Parent recipe ID.
+        example: 1
+        type: integer
+      updated_at:
+        description: Last update timestamp in RFC3339 UTC.
+        example: "2026-02-17T12:00:00Z"
+        type: string
+    type: object
+  handlers.RecipeResponse:
+    properties:
+      carbs_per_100g:
+        description: Carbohydrate grams per 100g.
+        example: 28
+        type: number
+      created_at:
+        description: Creation timestamp in RFC3339 UTC.
+        example: "2026-02-17T12:00:00Z"
+        type: string
+      fat_per_100g:
+        description: Fat grams per 100g.
+        example: 0.3
+        type: number
+      id:
+        description: Recipe ID.
+        example: 1
+        type: integer
+      ingredients:
+        items:
+          $ref: '#/definitions/handlers.RecipeIngredientResponse'
+        type: array
+      kcal_per_100g:
+        description: Energy in kcal per 100g.
+        example: 130
+        type: number
+      name:
+        description: Recipe name.
+        example: Rice Bowl
+        type: string
+      protein_per_100g:
+        description: Protein grams per 100g.
+        example: 2.7
+        type: number
+      updated_at:
+        description: Last update timestamp in RFC3339 UTC.
+        example: "2026-02-17T12:00:00Z"
+        type: string
+      yield_weight_g:
+        description: Final cooked yield weight in grams.
+        example: 200
+        type: number
+    type: object
+  handlers.UserGoalResponse:
+    properties:
+      activity_level:
+        description: Optional activity level.
+        example: moderate
+        type: string
+      created_at:
+        description: Creation timestamp in RFC3339 UTC.
+        example: "2026-02-17T08:00:00Z"
+        type: string
+      id:
+        description: User goal ID.
+        example: 1
+        type: integer
+      target_carbs_g:
+        description: Target carbs grams per day.
+        example: 220
+        type: number
+      target_fat_g:
+        description: Target fat grams per day.
+        example: 70
+        type: number
+      target_kcal:
+        description: Target kcal per day.
+        example: 2200
+        type: number
+      target_protein_g:
+        description: Target protein grams per day.
+        example: 150
+        type: number
+      updated_at:
+        description: Last update timestamp in RFC3339 UTC.
+        example: "2026-02-17T08:00:00Z"
+        type: string
+      user_id:
+        description: Owner user ID.
+        example: 1
+        type: integer
+      weight_goal_kg:
+        description: Optional weight goal in kilograms.
+        example: 80
+        type: number
+    type: object
+  handlers.UserResponse:
+    properties:
+      activity_level:
+        description: Optional activity level.
+        example: moderate
+        type: string
+      birth_date:
+        description: Optional birth date.
+        example: "1994-05-18T00:00:00Z"
+        type: string
+      created_at:
+        description: Creation timestamp in RFC3339 UTC.
+        example: "2026-02-17T12:00:00Z"
+        type: string
+      email:
+        description: Unique normalized email address.
+        example: john@gmail.com
+        type: string
+      height_cm:
+        description: Optional height in centimeters.
+        example: 178
+        type: number
+      id:
+        description: User ID.
+        example: 1
+        type: integer
+      name:
+        description: Display name.
+        example: Test User
+        type: string
+      sex:
+        description: Optional biological sex.
+        example: male
+        type: string
+      updated_at:
+        description: Last update timestamp in RFC3339 UTC.
+        example: "2026-02-17T12:00:00Z"
+        type: string
+    type: object
+  meal.MealType:
+    enum:
+    - breakfast
+    - lunch
+    - dinner
+    - snack
+    type: string
+    x-enum-varnames:
+    - MealTypeBreakfast
+    - MealTypeLunch
+    - MealTypeDinner
+    - MealTypeSnack
+  service.AuthResult:
+    properties:
+      access_token:
+        type: string
+      refresh_token:
+        type: string
+      token:
+        type: string
+      user:
+        $ref: '#/definitions/user.User'
+    type: object
+  user.User:
+    properties:
+      activity_level:
+        type: string
+      birth_date:
+        type: string
+      created_at:
+        type: string
+      email:
+        type: string
+      height_cm:
+        type: number
+      id:
+        type: integer
+      name:
+        type: string
+      sex:
+        type: string
+      updated_at:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: |-
+    Nutrition tracking API.
+
+    Error code catalog:
+    - See docs/openapi-error-codes.md in repository root.
+  title: Nutrition API
+  version: "1.0"
+paths:
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Login payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dto.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/service.AuthResult'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "429":
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Login user
+      tags:
+      - auth
+  /auth/logout:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Refresh token payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dto.RefreshTokenRequest'
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Logout session
+      tags:
+      - auth
+  /auth/me:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.UserResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Get current authenticated user
+      tags:
+      - auth
+  /auth/refresh:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Refresh token payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dto.RefreshTokenRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/service.AuthResult'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Refresh tokens
+      tags:
+      - auth
+  /auth/register:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Registration payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dto.RegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/service.AuthResult'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Register user
+      tags:
+      - auth
+  /body-weight-logs:
+    get:
+      parameters:
+      - description: From date (YYYY-MM-DD)
+        in: query
+        name: from
+        required: true
+        type: string
+      - description: To date (YYYY-MM-DD)
+        in: query
+        name: to
+        required: true
+        type: string
+      - description: Page size (default 20, max 100)
+        in: query
+        name: limit
+        type: integer
+      - description: Page offset (default 0)
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/handlers.BodyWeightLogResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: List body weight logs by date range
+      tags:
+      - body-weight-logs
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Body weight payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CreateBodyWeightLogRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/handlers.BodyWeightLogResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Create body weight log
+      tags:
+      - body-weight-logs
+  /body-weight-logs/latest:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.BodyWeightLogResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Get latest body weight log
+      tags:
+      - body-weight-logs
+  /daily-totals:
+    get:
+      parameters:
+      - description: Date (YYYY-MM-DD)
+        in: query
+        name: date
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.DailyTotalsResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Get daily nutrition totals
+      tags:
+      - meals
+  /foods:
+    get:
+      parameters:
+      - description: Search by food name (case-insensitive, partial match)
+        in: query
+        name: q
+        type: string
+      - description: Page size (default 20, max 100)
+        in: query
+        name: limit
+        type: integer
+      - description: Page offset (default 0)
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/handlers.FoodResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: List foods
+      tags:
+      - foods
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Food payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CreateFoodRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/handlers.FoodResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Create food
+      tags:
+      - foods
+  /foods/{id}:
+    get:
+      parameters:
+      - description: Food ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.FoodResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Get food by ID
+      tags:
+      - foods
+    patch:
+      consumes:
+      - application/json
+      parameters:
+      - description: Food ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Food update payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UpdateFoodRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.FoodResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Update food
+      tags:
+      - foods
+  /foods/by-barcode/{barcode}:
+    get:
+      parameters:
+      - description: Food barcode
+        in: path
+        name: barcode
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.FoodResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Get food by barcode
+      tags:
+      - foods
+  /health:
+    get:
+      description: Backward-compatible alias for readiness
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.HealthResponse'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Health check
+      tags:
+      - health
+  /health/live:
+    get:
+      description: Returns process liveness status
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.HealthResponse'
+      summary: Liveness check
+      tags:
+      - health
+  /health/ready:
+    get:
+      description: Returns dependency readiness status
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.HealthResponse'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Readiness check
+      tags:
+      - health
+  /meals:
+    get:
+      parameters:
+      - description: Date (YYYY-MM-DD)
+        in: query
+        name: date
+        required: true
+        type: string
+      - description: Page size (default 20, max 100)
+        in: query
+        name: limit
+        type: integer
+      - description: Page offset (default 0)
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/handlers.MealResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: List meals by user and date
+      tags:
+      - meals
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Meal payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CreateMealRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/handlers.MealResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Create meal
+      tags:
+      - meals
+  /meals/{id}:
+    delete:
+      parameters:
+      - description: Meal ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Delete meal
+      tags:
+      - meals
+    get:
+      parameters:
+      - description: Meal ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.MealResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Get meal by ID
+      tags:
+      - meals
+    patch:
+      consumes:
+      - application/json
+      parameters:
+      - description: Meal ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Meal update payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UpdateMealRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.MealResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Update meal
+      tags:
+      - meals
+  /meals/{id}/items:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Meal ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Meal item payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dto.AddMealItemRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/handlers.MealItemResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Add meal item
+      tags:
+      - meals
+  /meals/{meal_id}/items/{item_id}:
+    delete:
+      parameters:
+      - description: Meal ID
+        in: path
+        name: meal_id
+        required: true
+        type: integer
+      - description: Meal Item ID
+        in: path
+        name: item_id
+        required: true
+        type: integer
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Delete meal item
+      tags:
+      - meals
+    patch:
+      consumes:
+      - application/json
+      parameters:
+      - description: Meal ID
+        in: path
+        name: meal_id
+        required: true
+        type: integer
+      - description: Meal Item ID
+        in: path
+        name: item_id
+        required: true
+        type: integer
+      - description: Meal item update payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UpdateMealItemRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.MealItemResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Update meal item
+      tags:
+      - meals
+  /progress/daily:
+    get:
+      parameters:
+      - description: Date (YYYY-MM-DD)
+        in: query
+        name: date
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.DailyProgressResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Get daily progress against user goals
+      tags:
+      - user-goals
+  /progress/energy:
+    get:
+      parameters:
+      - description: From date (YYYY-MM-DD)
+        in: query
+        name: from
+        type: string
+      - description: To date (YYYY-MM-DD)
+        in: query
+        name: to
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.EnergyProgressResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Get observed/formula energy progress
+      tags:
+      - progress
+  /recipes:
+    get:
+      parameters:
+      - description: Search by recipe name (case-insensitive, partial match)
+        in: query
+        name: q
+        type: string
+      - description: Page size (default 20, max 100)
+        in: query
+        name: limit
+        type: integer
+      - description: Page offset (default 0)
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/handlers.RecipeResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: List recipes
+      tags:
+      - recipes
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Recipe payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CreateRecipeRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/handlers.RecipeResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Create recipe
+      tags:
+      - recipes
+  /recipes/{id}:
+    get:
+      parameters:
+      - description: Recipe ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.RecipeResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Get recipe by ID
+      tags:
+      - recipes
+    patch:
+      consumes:
+      - application/json
+      parameters:
+      - description: Recipe ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Recipe update payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UpdateRecipeRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.RecipeResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Update recipe
+      tags:
+      - recipes
+  /user-goals:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.UserGoalResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Get current user goals
+      tags:
+      - user-goals
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: User goals payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UpsertUserGoalRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.UserGoalResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Create or update user goals
+      tags:
+      - user-goals
+  /users/{id}:
+    get:
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.UserResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Get user by ID
+      tags:
+      - users
+  /users/me:
+    patch:
+      consumes:
+      - application/json
+      parameters:
+      - description: Update me payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UpdateMeRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.UserResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Update current authenticated user profile
+      tags:
+      - users
+schemes:
+- http
+- https
+swagger: "2.0"

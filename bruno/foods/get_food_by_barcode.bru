@@ -1,0 +1,13 @@
+meta {
+  name: Get Food By Barcode
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/api/v1/foods/by-barcode/{{foodBarcode}}
+}
+
+headers {
+  Authorization: Bearer {{jwt}}
+}

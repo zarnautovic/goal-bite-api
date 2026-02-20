@@ -1,0 +1,22 @@
+meta {
+  name: Update Meal
+  type: http
+  seq: 7
+}
+
+patch {
+  url: {{baseUrl}}/api/v1/meals/{{mealId}}
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: Bearer {{jwt}}
+}
+
+body:json {
+  {
+    "meal_type": "dinner",
+    "eaten_at": "2026-02-17T21:00:00Z"
+  }
+}

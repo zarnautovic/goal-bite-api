@@ -1,0 +1,13 @@
+meta {
+  name: Get Meal By ID
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/v1/meals/{{mealId}}
+}
+
+headers {
+  Authorization: Bearer {{jwt}}
+}

@@ -1,0 +1,13 @@
+meta {
+  name: Get Latest Body Weight Log
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/v1/body-weight-logs/latest
+}
+
+headers {
+  Authorization: Bearer {{jwt}}
+}

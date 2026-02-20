@@ -1,0 +1,13 @@
+meta {
+  name: Delete Meal
+  type: http
+  seq: 8
+}
+
+delete {
+  url: {{baseUrl}}/api/v1/meals/{{mealId}}
+}
+
+headers {
+  Authorization: Bearer {{jwt}}
+}

@@ -1,0 +1,21 @@
+meta {
+  name: Update Meal Item
+  type: http
+  seq: 9
+}
+
+patch {
+  url: {{baseUrl}}/api/v1/meals/{{mealId}}/items/{{mealItemId}}
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: Bearer {{jwt}}
+}
+
+body:json {
+  {
+    "weight_g": 140
+  }
+}

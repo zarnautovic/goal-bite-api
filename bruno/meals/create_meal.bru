@@ -1,0 +1,28 @@
+meta {
+  name: Create Meal
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/v1/meals
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: Bearer {{jwt}}
+}
+
+body:json {
+  {
+    "meal_type": "snack",
+    "eaten_at": "2026-02-17T20:00:00Z",
+    "items": [
+      {
+        "food_id": 1,
+        "weight_g": 180
+      }
+    ]
+  }
+}

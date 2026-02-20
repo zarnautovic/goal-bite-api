@@ -1,0 +1,2 @@
+ALTER TABLE foods
+DROP COLUMN IF EXISTS brand_name;
