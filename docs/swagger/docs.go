@@ -635,6 +635,62 @@ const docTemplate = `{
                     }
                 }
             },
+            "delete": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "foods"
+                ],
+                "summary": "Delete food",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Food ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ErrorEnvelope"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ErrorEnvelope"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ErrorEnvelope"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ErrorEnvelope"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ErrorEnvelope"
+                        }
+                    }
+                }
+            },
             "patch": {
                 "consumes": [
                     "application/json"
@@ -1409,6 +1465,62 @@ const docTemplate = `{
                     }
                 }
             },
+            "delete": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "recipes"
+                ],
+                "summary": "Delete recipe",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Recipe ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ErrorEnvelope"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ErrorEnvelope"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ErrorEnvelope"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ErrorEnvelope"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ErrorEnvelope"
+                        }
+                    }
+                }
+            },
             "patch": {
                 "consumes": [
                     "application/json"
@@ -1694,6 +1806,11 @@ const docTemplate = `{
                     "type": "string",
                     "example": "5901234123457"
                 },
+                "brand_name": {
+                    "description": "Optional brand name.",
+                    "type": "string",
+                    "example": "Fage"
+                },
                 "carbs_per_100g": {
                     "description": "Carbohydrate grams per 100g.",
                     "type": "number",
@@ -1851,6 +1968,11 @@ const docTemplate = `{
                     "description": "Optional product barcode (EAN/UPC digits).",
                     "type": "string",
                     "example": "5901234123457"
+                },
+                "brand_name": {
+                    "description": "Optional brand name.",
+                    "type": "string",
+                    "example": "Fage"
                 },
                 "carbs_per_100g": {
                     "description": "Optional carbohydrate grams per 100g.",
@@ -2207,6 +2329,11 @@ const docTemplate = `{
                     "description": "Optional product barcode.",
                     "type": "string",
                     "example": "5901234123457"
+                },
+                "brand_name": {
+                    "description": "Optional brand name.",
+                    "type": "string",
+                    "example": "Fage"
                 },
                 "carbs_per_100g": {
                     "description": "Carbohydrate grams per 100g.",

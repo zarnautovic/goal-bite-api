@@ -32,6 +32,10 @@ definitions:
         description: Optional product barcode (EAN/UPC digits).
         example: "5901234123457"
         type: string
+      brand_name:
+        description: Optional brand name.
+        example: Fage
+        type: string
       carbs_per_100g:
         description: Carbohydrate grams per 100g.
         example: 28
@@ -145,6 +149,10 @@ definitions:
       barcode:
         description: Optional product barcode (EAN/UPC digits).
         example: "5901234123457"
+        type: string
+      brand_name:
+        description: Optional brand name.
+        example: Fage
         type: string
       carbs_per_100g:
         description: Optional carbohydrate grams per 100g.
@@ -412,6 +420,10 @@ definitions:
       barcode:
         description: Optional product barcode.
         example: "5901234123457"
+        type: string
+      brand_name:
+        description: Optional brand name.
+        example: Fage
         type: string
       carbs_per_100g:
         description: Carbohydrate grams per 100g.
@@ -1106,6 +1118,43 @@ paths:
       tags:
       - foods
   /foods/{id}:
+    delete:
+      parameters:
+      - description: Food ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Delete food
+      tags:
+      - foods
     get:
       parameters:
       - description: Food ID
@@ -1643,6 +1692,43 @@ paths:
       tags:
       - recipes
   /recipes/{id}:
+    delete:
+      parameters:
+      - description: Recipe ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorEnvelope'
+      summary: Delete recipe
+      tags:
+      - recipes
     get:
       parameters:
       - description: Recipe ID
