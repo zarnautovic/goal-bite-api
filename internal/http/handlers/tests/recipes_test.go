@@ -10,11 +10,11 @@ import (
 	"testing"
 	"time"
 
-	"nutrition/internal/domain/recipe"
-	"nutrition/internal/domain/recipeingredient"
-	"nutrition/internal/http/handlers"
-	httpmiddleware "nutrition/internal/http/middleware"
-	"nutrition/internal/service"
+	"goal-bite-api/internal/domain/recipe"
+	"goal-bite-api/internal/domain/recipeingredient"
+	"goal-bite-api/internal/http/handlers"
+	httpmiddleware "goal-bite-api/internal/http/middleware"
+	"goal-bite-api/internal/service"
 
 	"github.com/go-chi/chi/v5"
 )

@@ -4,8 +4,8 @@ import (
 	"errors"
 	"testing"
 
-	"nutrition/internal/http/dto"
-	"nutrition/internal/service"
+	"goal-bite-api/internal/http/dto"
+	"goal-bite-api/internal/service"
 )
 
 func TestParsePagination(t *testing.T) {

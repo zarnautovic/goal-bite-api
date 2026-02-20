@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"time"
 
-	"nutrition/internal/auth"
-	"nutrition/internal/http/handlers"
-	httpmiddleware "nutrition/internal/http/middleware"
+	"goal-bite-api/internal/auth"
+	"goal-bite-api/internal/http/handlers"
+	httpmiddleware "goal-bite-api/internal/http/middleware"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"

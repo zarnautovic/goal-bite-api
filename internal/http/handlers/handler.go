@@ -3,14 +3,14 @@ package handlers
 import (
 	"context"
 
-	"nutrition/internal/domain/bodyweightlog"
-	"nutrition/internal/domain/food"
-	"nutrition/internal/domain/meal"
-	"nutrition/internal/domain/mealitem"
-	"nutrition/internal/domain/recipe"
-	"nutrition/internal/domain/user"
-	"nutrition/internal/domain/usergoal"
-	"nutrition/internal/service"
+	"goal-bite-api/internal/domain/bodyweightlog"
+	"goal-bite-api/internal/domain/food"
+	"goal-bite-api/internal/domain/meal"
+	"goal-bite-api/internal/domain/mealitem"
+	"goal-bite-api/internal/domain/recipe"
+	"goal-bite-api/internal/domain/user"
+	"goal-bite-api/internal/domain/usergoal"
+	"goal-bite-api/internal/service"
 )
 
 type Handler struct {

@@ -4,10 +4,10 @@ import (
 	"log/slog"
 	"os"
 
-	"nutrition/internal/app"
-	"nutrition/internal/config"
+	"goal-bite-api/internal/app"
+	"goal-bite-api/internal/config"
 
-	_ "nutrition/docs/swagger"
+	_ "goal-bite-api/docs/swagger"
 )
 
 // @title Nutrition API

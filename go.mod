@@ -1,4 +1,4 @@
-module nutrition
+module goal-bite-api
 
 go 1.23.0
 

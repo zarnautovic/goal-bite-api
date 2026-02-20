@@ -4,8 +4,8 @@ import (
 	"errors"
 	"time"
 
-	"nutrition/internal/domain/meal"
-	"nutrition/internal/service"
+	"goal-bite-api/internal/domain/meal"
+	"goal-bite-api/internal/service"
 )
 
 var (

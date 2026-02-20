@@ -5,8 +5,8 @@ import (
 	"errors"
 	"strings"
 
-	"nutrition/internal/domain/food"
-	"nutrition/internal/repository"
+	"goal-bite-api/internal/domain/food"
+	"goal-bite-api/internal/repository"
 )
 
 var (

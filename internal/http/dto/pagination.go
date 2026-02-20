@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"strings"
 
-	"nutrition/internal/service"
+	"goal-bite-api/internal/service"
 )
 
 type PaginationQuery struct {

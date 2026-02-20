@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"nutrition/internal/http/dto"
-	"nutrition/internal/service"
+	"goal-bite-api/internal/http/dto"
+	"goal-bite-api/internal/service"
 
 	"github.com/go-chi/chi/v5"
 )

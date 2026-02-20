@@ -5,7 +5,7 @@ import (
 	"errors"
 	"strings"
 
-	"nutrition/internal/domain/food"
+	"goal-bite-api/internal/domain/food"
 
 	"gorm.io/gorm"
 )

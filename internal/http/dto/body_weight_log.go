@@ -4,7 +4,7 @@ import (
 	"errors"
 	"time"
 
-	"nutrition/internal/service"
+	"goal-bite-api/internal/service"
 )
 
 var (

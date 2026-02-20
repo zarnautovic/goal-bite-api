@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strings"
 
-	"nutrition/internal/auth"
+	"goal-bite-api/internal/auth"
 
 	chimw "github.com/go-chi/chi/v5/middleware"
 )

@@ -5,8 +5,8 @@ import (
 	"strings"
 	"time"
 
-	"nutrition/internal/auth"
-	"nutrition/internal/service"
+	"goal-bite-api/internal/auth"
+	"goal-bite-api/internal/service"
 )
 
 var (

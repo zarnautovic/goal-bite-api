@@ -4,7 +4,7 @@ import (
 	"errors"
 	"testing"
 
-	"nutrition/internal/http/dto"
+	"goal-bite-api/internal/http/dto"
 )
 
 func TestCreateRecipeRequestValidate(t *testing.T) {

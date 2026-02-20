@@ -5,8 +5,8 @@ import (
 	"errors"
 	"time"
 
-	"nutrition/internal/domain/bodyweightlog"
-	"nutrition/internal/repository"
+	"goal-bite-api/internal/domain/bodyweightlog"
+	"goal-bite-api/internal/repository"
 )
 
 var (

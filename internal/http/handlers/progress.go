@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"time"
 
-	"nutrition/internal/service"
+	"goal-bite-api/internal/service"
 )
 
 // GetEnergyProgress godoc

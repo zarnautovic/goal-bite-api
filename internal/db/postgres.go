@@ -1,8 +1,8 @@
 package db
 
 import (
+	"goal-bite-api/internal/domain/user"
 	"log"
-	"nutrition/internal/domain/user"
 	"os"
 	"time"
 

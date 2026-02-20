@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"nutrition/internal/domain/meal"
-	"nutrition/internal/domain/mealitem"
+	"goal-bite-api/internal/domain/meal"
+	"goal-bite-api/internal/domain/mealitem"
 )
 
 type mealResponse struct {

@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
-	"nutrition/internal/auth"
-	"nutrition/internal/domain/user"
-	"nutrition/internal/repository"
+	"goal-bite-api/internal/auth"
+	"goal-bite-api/internal/domain/user"
+	"goal-bite-api/internal/repository"
 )
 
 var (

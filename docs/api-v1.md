@@ -55,7 +55,7 @@ All routes except register/login/refresh/logout and health live/ready require:
 ```json
 {
   "status": "ok",
-  "message": "nutrition api is running"
+  "message": "goal-bite api is running"
 }
 ```
 

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"time"
 
-	"nutrition/internal/service"
+	"goal-bite-api/internal/service"
 )
 
 type UpdateMeRequest struct {

@@ -450,7 +450,7 @@ definitions:
     properties:
       message:
         description: Human-readable health message.
-        example: nutrition api is running
+        example: goal-bite api is running
         type: string
       status:
         description: Service status.

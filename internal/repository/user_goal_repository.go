@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"nutrition/internal/domain/usergoal"
+	"goal-bite-api/internal/domain/usergoal"
 
 	"gorm.io/gorm"
 )

@@ -3,7 +3,7 @@ package handlers
 import (
 	"net/http"
 
-	"nutrition/internal/http/dto"
+	"goal-bite-api/internal/http/dto"
 )
 
 func parsePagination(r *http.Request) (int, int, bool) {

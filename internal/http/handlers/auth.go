@@ -5,8 +5,8 @@ import (
 	"errors"
 	"net/http"
 
-	"nutrition/internal/http/dto"
-	"nutrition/internal/service"
+	"goal-bite-api/internal/http/dto"
+	"goal-bite-api/internal/service"
 )
 
 // Register godoc

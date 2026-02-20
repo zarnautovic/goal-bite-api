@@ -6,8 +6,8 @@ import (
 	"log/slog"
 	"os"
 
-	"nutrition/internal/config"
-	"nutrition/internal/db"
+	"goal-bite-api/internal/config"
+	"goal-bite-api/internal/db"
 )
 
 func main() {

@@ -2256,7 +2256,7 @@ const docTemplate = `{
                 "message": {
                     "description": "Human-readable health message.",
                     "type": "string",
-                    "example": "nutrition api is running"
+                    "example": "goal-bite api is running"
                 },
                 "status": {
                     "description": "Service status.",

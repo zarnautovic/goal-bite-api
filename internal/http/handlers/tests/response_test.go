@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"nutrition/internal/http/handlers"
+	"goal-bite-api/internal/http/handlers"
 
 	chimw "github.com/go-chi/chi/v5/middleware"
 )

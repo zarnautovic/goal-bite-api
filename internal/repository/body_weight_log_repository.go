@@ -5,7 +5,7 @@ import (
 	"errors"
 	"time"
 
-	"nutrition/internal/domain/bodyweightlog"
+	"goal-bite-api/internal/domain/bodyweightlog"
 
 	"gorm.io/gorm"
 )

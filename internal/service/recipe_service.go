@@ -5,10 +5,10 @@ import (
 	"errors"
 	"strings"
 
-	"nutrition/internal/domain/food"
-	"nutrition/internal/domain/recipe"
-	"nutrition/internal/domain/recipeingredient"
-	"nutrition/internal/repository"
+	"goal-bite-api/internal/domain/food"
+	"goal-bite-api/internal/domain/recipe"
+	"goal-bite-api/internal/domain/recipeingredient"
+	"goal-bite-api/internal/repository"
 )
 
 var (

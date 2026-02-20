@@ -11,13 +11,13 @@ import (
 	"syscall"
 	"time"
 
-	"nutrition/internal/auth"
-	"nutrition/internal/config"
-	"nutrition/internal/db"
-	httpapi "nutrition/internal/http"
-	"nutrition/internal/http/handlers"
-	"nutrition/internal/repository"
-	"nutrition/internal/service"
+	"goal-bite-api/internal/auth"
+	"goal-bite-api/internal/config"
+	"goal-bite-api/internal/db"
+	httpapi "goal-bite-api/internal/http"
+	"goal-bite-api/internal/http/handlers"
+	"goal-bite-api/internal/repository"
+	"goal-bite-api/internal/service"
 
 	"gorm.io/gorm"
 )

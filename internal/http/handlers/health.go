@@ -10,7 +10,7 @@ import "net/http"
 // @Success 200 {object} HealthResponse
 // @Router /health/live [get]
 func (h *Handler) HealthLive(w http.ResponseWriter, _ *http.Request) {
-	writeJSON(w, http.StatusOK, map[string]string{"status": "ok", "message": "nutrition api is running"})
+	writeJSON(w, http.StatusOK, map[string]string{"status": "ok", "message": "goal-bite api is running"})
 }
 
 // HealthReady godoc
@@ -26,7 +26,7 @@ func (h *Handler) HealthReady(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusServiceUnavailable, "service_unavailable", "service unavailable")
 		return
 	}
-	writeJSON(w, http.StatusOK, map[string]string{"status": "ok", "message": "nutrition api is running"})
+	writeJSON(w, http.StatusOK, map[string]string{"status": "ok", "message": "goal-bite api is running"})
 }
 
 // Health godoc

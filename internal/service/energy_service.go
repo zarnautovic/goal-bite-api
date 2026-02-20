@@ -6,9 +6,9 @@ import (
 	"math"
 	"time"
 
-	"nutrition/internal/domain/bodyweightlog"
-	"nutrition/internal/domain/user"
-	"nutrition/internal/repository"
+	"goal-bite-api/internal/domain/bodyweightlog"
+	"goal-bite-api/internal/domain/user"
+	"goal-bite-api/internal/repository"
 )
 
 var (

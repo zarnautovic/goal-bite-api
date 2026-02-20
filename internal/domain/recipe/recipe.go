@@ -3,7 +3,7 @@ package recipe
 import (
 	"time"
 
-	"nutrition/internal/domain/recipeingredient"
+	"goal-bite-api/internal/domain/recipeingredient"
 )
 
 type Recipe struct {

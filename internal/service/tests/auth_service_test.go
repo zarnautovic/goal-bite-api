@@ -6,10 +6,10 @@ import (
 	"testing"
 	"time"
 
-	"nutrition/internal/auth"
-	"nutrition/internal/domain/user"
-	"nutrition/internal/repository"
-	"nutrition/internal/service"
+	"goal-bite-api/internal/auth"
+	"goal-bite-api/internal/domain/user"
+	"goal-bite-api/internal/repository"
+	"goal-bite-api/internal/service"
 )
 
 type fakeUserAuthStore struct {

@@ -8,9 +8,9 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"nutrition/internal/domain/user"
-	"nutrition/internal/http/handlers"
-	"nutrition/internal/service"
+	"goal-bite-api/internal/domain/user"
+	"goal-bite-api/internal/http/handlers"
+	"goal-bite-api/internal/service"
 )
 
 type fakeHealthUserService struct{}

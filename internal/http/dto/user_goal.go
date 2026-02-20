@@ -3,7 +3,7 @@ package dto
 import (
 	"errors"
 
-	"nutrition/internal/service"
+	"goal-bite-api/internal/service"
 )
 
 var (

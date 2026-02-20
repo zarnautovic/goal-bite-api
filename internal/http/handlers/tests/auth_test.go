@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	"nutrition/internal/http/handlers"
-	"nutrition/internal/service"
+	"goal-bite-api/internal/http/handlers"
+	"goal-bite-api/internal/service"
 
 	"github.com/go-chi/chi/v5"
 )

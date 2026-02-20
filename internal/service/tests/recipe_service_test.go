@@ -5,11 +5,11 @@ import (
 	"errors"
 	"testing"
 
-	"nutrition/internal/domain/food"
-	"nutrition/internal/domain/recipe"
-	"nutrition/internal/domain/recipeingredient"
-	"nutrition/internal/repository"
-	"nutrition/internal/service"
+	"goal-bite-api/internal/domain/food"
+	"goal-bite-api/internal/domain/recipe"
+	"goal-bite-api/internal/domain/recipeingredient"
+	"goal-bite-api/internal/repository"
+	"goal-bite-api/internal/service"
 )
 
 type fakeRecipeStore struct {

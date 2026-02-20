@@ -3,7 +3,7 @@ package meal
 import (
 	"time"
 
-	"nutrition/internal/domain/mealitem"
+	"goal-bite-api/internal/domain/mealitem"
 )
 
 type MealType string

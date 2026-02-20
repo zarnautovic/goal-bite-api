@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"strings"
 
-	"nutrition/internal/domain/recipe"
-	"nutrition/internal/http/dto"
-	"nutrition/internal/service"
+	"goal-bite-api/internal/domain/recipe"
+	"goal-bite-api/internal/http/dto"
+	"goal-bite-api/internal/service"
 
 	"github.com/go-chi/chi/v5"
 )

@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"nutrition/internal/domain/user"
-	"nutrition/internal/repository"
+	"goal-bite-api/internal/domain/user"
+	"goal-bite-api/internal/repository"
 )
 
 var ErrUserNotFound = errors.New("user not found")

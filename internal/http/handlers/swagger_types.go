@@ -6,7 +6,7 @@ type HealthResponse struct {
 	// Service status.
 	Status string `json:"status" example:"ok"`
 	// Human-readable health message.
-	Message string `json:"message" example:"nutrition api is running"`
+	Message string `json:"message" example:"goal-bite api is running"`
 }
 
 type UserResponse struct {

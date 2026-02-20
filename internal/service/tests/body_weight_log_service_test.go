@@ -6,9 +6,9 @@ import (
 	"testing"
 	"time"
 
-	"nutrition/internal/domain/bodyweightlog"
-	"nutrition/internal/repository"
-	"nutrition/internal/service"
+	"goal-bite-api/internal/domain/bodyweightlog"
+	"goal-bite-api/internal/repository"
+	"goal-bite-api/internal/service"
 )
 
 type fakeBodyWeightLogStore struct {

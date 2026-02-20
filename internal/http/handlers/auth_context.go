@@ -3,7 +3,7 @@ package handlers
 import (
 	"net/http"
 
-	httpmiddleware "nutrition/internal/http/middleware"
+	httpmiddleware "goal-bite-api/internal/http/middleware"
 )
 
 func requireAuthUserID(w http.ResponseWriter, r *http.Request) (uint, bool) {

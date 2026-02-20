@@ -5,8 +5,8 @@ import (
 	"errors"
 	"time"
 
-	"nutrition/internal/domain/meal"
-	"nutrition/internal/domain/mealitem"
+	"goal-bite-api/internal/domain/meal"
+	"goal-bite-api/internal/domain/mealitem"
 
 	"gorm.io/gorm"
 )
